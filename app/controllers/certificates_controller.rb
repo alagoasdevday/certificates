@@ -22,17 +22,17 @@ class CertificatesController < ApplicationController
 
   private
 
-    def pdf_hash
-      {
-        pdf:   "#{@event.name} - #{@participant.name}",
-        disposition:  'attachment',
-        template:     "certificates/#{@event.pdf_template}.pdf.erb",
-        layout:       "#{@event.pdf_layout}.html",
-        show_as_html: params[:debug].present?,
-        orientation:  'Landscape',
-        page_size:    'Letter',
-        margin:       { top: 5, bottom: 0, left: 0, right: 0 },
-        title:        "Certificado #{@event.name}"
-      }
-    end
+  def pdf_hash
+    {
+      pdf:   "#{@event.name} - #{@participant.name}",
+      disposition:  'attachment',
+      template:     "certificates/#{@event.pdf_template}.pdf.erb",
+      layout:       "#{@event.pdf_layout}.html",
+      show_as_html: params[:debug].present?,
+      orientation:  'Landscape',
+      page_size:    'Letter',
+      margin:       { top: 5, bottom: 0, left: 0, right: 0 },
+      title:        "Certificado #{@event.name}"
+    }
+  end
 end
