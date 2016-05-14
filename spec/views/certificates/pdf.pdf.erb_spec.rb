@@ -21,15 +21,15 @@ RSpec.describe "certificates/pdf.pdf.erb", type: :view do
   end
 
   it "must have participant information" do
-    expect(rendered).to match /#{@participant.name}/
-    expect(rendered).to match /#{@participant.participation_type}/
+    expect(rendered).to match(/#{@participant.name}/)
+    expect(rendered).to match(/#{@participant.participation_type}/)
   end
 
   it "must have event information" do
-    expect(rendered).to match /#{@event.name}/
-    expect(rendered).to match /#{@event.location}/
-    expect(rendered).to match /#{@event.workload}/
-    expect(rendered).to match /#{@event.start_date.strftime('%d/%m/%Y')}/
-    expect(rendered).to match /#{@event.end_date.strftime('%d/%m/%Y')}/
+    expect(rendered).to match(/#{@event.name}/)
+    expect(rendered).to match(/#{@event.location}/)
+    expect(rendered).to match(/#{@event.workload}/)
+    expect(rendered).to match(/#{@event.start_date.strftime('%d/%m/%Y')}/)
+    expect(rendered).to match(/#{@event.end_date.strftime('%d/%m/%Y')}/)
   end
 end

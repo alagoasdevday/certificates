@@ -37,13 +37,13 @@ RSpec.describe "certificates/search.html.erb", type: :view do
   end
 
   it "must have participant information" do
-    expect(rendered).to match /#{@participant.name}/
+    expect(rendered).to match(/#{@participant.name}/)
   end
 
   it "must have all events information" do
     @events.each do |event|
-      expect(rendered).to match /#{event.name}/
-      expect(rendered).to match /#{show_certificate_path(event, @participant, format: :pdf)}/
+      expect(rendered).to match(/#{event.name}/)
+      expect(rendered).to match(/#{show_certificate_path(event, @participant, format: :pdf)}/)
     end
   end
 end

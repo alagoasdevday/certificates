@@ -53,6 +53,7 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'rspec-rails'
   gem 'simplecov', require: false
+  gem 'codacy-coverage', :require => false
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem "codeclimate-test-reporter"

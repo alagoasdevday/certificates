@@ -4,6 +4,7 @@
 [![Test Coverage](https://codeclimate.com/github/alagoasdevday/certificates/badges/coverage.svg)](https://codeclimate.com/github/alagoasdevday/certificates/coverage)
 [![Code Climate](https://codeclimate.com/github/alagoasdevday/certificates/badges/gpa.svg)](https://codeclimate.com/github/alagoasdevday/certificates)
 [![Security](https://hakiri.io/github/alagoasdevday/certificates/master.svg)](https://hakiri.io/github/alagoasdevday/certificates/master)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e998c32fd45a4c70bd8f3068ecfd137b)](https://www.codacy.com/app/gmmcal/certificates?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alagoasdevday/certificates&amp;utm_campaign=Badge_Grade)
 
 Certificates app for Alagoas Dev Day
 

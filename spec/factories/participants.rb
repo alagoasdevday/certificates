@@ -4,7 +4,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     participation_type { Faker::Lorem.word }
     event_ids do
-      ([*0...5].sample).times.map do |i|
+      ([*0...5].sample).times.map do
         create(:event).id
       end
     end
