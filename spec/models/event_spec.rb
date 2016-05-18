@@ -13,33 +13,34 @@ RSpec.describe Event, type: :model do
   end
 
   context 'is invalid' do
-    it 'without a name' do
-      event = build(:event, name: nil)
+    let(:event) { build(:event) }
+
+    before(:each) do
+      event.name = nil
+      event.location = nil
+      event.start_date = nil
+      event.end_date = nil
+      event.workload = nil
       event.valid?
+    end
+
+    it 'without a name' do
       expect(event.errors[:name]).to include("can't be blank")
     end
 
     it 'without a location' do
-      event = build(:event, location: nil)
-      event.valid?
       expect(event.errors[:location]).to include("can't be blank")
     end
 
     it 'without a start_date' do
-      event = build(:event, start_date: nil)
-      event.valid?
       expect(event.errors[:start_date]).to include("can't be blank")
     end
 
     it 'without a end_date' do
-      event = build(:event, end_date: nil)
-      event.valid?
       expect(event.errors[:end_date]).to include("can't be blank")
     end
 
     it 'without a workload' do
-      event = build(:event, workload: nil)
-      event.valid?
       expect(event.errors[:workload]).to include("can't be blank")
     end
   end
