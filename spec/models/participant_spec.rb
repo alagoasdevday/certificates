@@ -13,21 +13,22 @@ RSpec.describe Participant, type: :model do
   context 'is invalid' do
     let(:participant) { build(:participant) }
 
-    it 'without a name' do
+    before(:all) do
       participant.name = nil
+      participant.email = nil
+      participant.participation_type = nil
       participant.valid?
+    end
+
+    it 'without a name' do
       expect(participant.errors[:name]).to include("can't be blank")
     end
 
     it 'without a email' do
-      participant.email = nil
-      participant.valid?
       expect(participant.errors[:email]).to include("can't be blank")
     end
 
     it 'without a participation_type' do
-      participant.participation_type = nil
-      participant.valid?
       expect(participant.errors[:participation_type]).to include("can't be blank")
     end
   end
