@@ -13,7 +13,7 @@ RSpec.describe Participant, type: :model do
   context 'is invalid' do
     let(:participant) { build(:participant) }
 
-    before(:all) do
+    before(:each) do
       participant.name = nil
       participant.email = nil
       participant.participation_type = nil
