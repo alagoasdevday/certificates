@@ -3,15 +3,15 @@ source 'https://rubygems.org'
 ruby '2.3.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.2.6'
+gem 'rails', '5.0.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.1'
 # Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+gem 'uglifier', '>= 3.0.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.2.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -37,7 +37,7 @@ gem 'dotenv-rails'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.3'
 end
 
 group :development, :test do
@@ -52,16 +52,17 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-rescue'
   gem 'rspec-rails'
+  gem 'rails-controller-testing'
   gem 'simplecov', require: false
   gem 'codacy-coverage', :require => false
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
   gem "codeclimate-test-reporter"
 end
-
+#
 gem 'bootstrap-sass', '~> 3.3.4'
-
+#
 gem 'wkhtmltopdf-binary'
-gem 'wicked_pdf'
+gem 'wicked_pdf', github: 'mileszs/wicked_pdf', branch: :master
 
 gem 'friendly_id', '~> 5.1.0'

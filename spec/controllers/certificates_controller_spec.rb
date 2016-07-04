@@ -28,7 +28,7 @@ RSpec.describe CertificatesController, type: :controller do
   describe "GET #search" do
     describe "if email is provided" do
       before(:each) do
-        get :search, email: @participant.email
+        get :search, params: { email: @participant.email }
       end
 
       it "returns http success" do
@@ -50,7 +50,7 @@ RSpec.describe CertificatesController, type: :controller do
 
     describe "if email is not provided" do
       before(:each) do
-        get :search, email: nil
+        get :search, params: { email: nil }
       end
 
       it "returns http not found" do
@@ -64,7 +64,7 @@ RSpec.describe CertificatesController, type: :controller do
 
     describe "if email is not in database" do
       before(:each) do
-        get :search, email: Faker::Internet.email
+        get :search, params: { email: Faker::Internet.email }
       end
 
       it "returns http not found" do
@@ -79,7 +79,7 @@ RSpec.describe CertificatesController, type: :controller do
 
   describe "GET #show" do
     before(:each) do
-      get :show, event_id: @event.id, participant_id: @participant.id, format: :pdf
+      get :show, params: { event_id: @event.id, participant_id: @participant.id, format: :pdf }
     end
     it "returns http success" do
       expect(response).to have_http_status(:success)
@@ -90,7 +90,7 @@ RSpec.describe CertificatesController, type: :controller do
     end
 
     it "renders the pdf layout" do
-      expect(response).to render_template(layout: [:layouts, :pdf])
+      expect(response).to render_template(layout: 'layouts/pdf.html')
     end
 
     it "assigns @participant" do

@@ -26,7 +26,7 @@ RSpec.describe "Certificates", type: :request do
       event = create(:event)
       participant = create(:participant, events: [event])
 
-      get search_events_path, email: participant.email
+      get search_events_path, params: { email: participant.email }
       expect(response).to have_http_status(200)
       expect(response).to render_template(:search)
       expect(response.body).to include(event.name)
@@ -44,7 +44,7 @@ RSpec.describe "Certificates", type: :request do
 
       expect(response).to have_http_status(200)
       expect(response).to render_template('certificates/pdf.pdf.erb')
-      expect(response).to render_template(layout: [:layouts, :pdf])
+      expect(response).to render_template(layout: 'layouts/pdf.html')
     end
 
     it "renders PDF certificate from friendly_id" do
@@ -52,7 +52,7 @@ RSpec.describe "Certificates", type: :request do
 
       expect(response).to have_http_status(200)
       expect(response).to render_template('certificates/pdf.pdf.erb')
-      expect(response).to render_template(layout: [:layouts, :pdf])
+      expect(response).to render_template(layout: 'layouts/pdf.html')
     end
 
     # it "renders an error if participant hasn't participated on the event" do
@@ -61,7 +61,7 @@ RSpec.describe "Certificates", type: :request do
 
     #   expect(response).to have_http_status(404)
     #   expect(response).to render_template('certificates/pdf.pdf.erb')
-    #   expect(response).to render_template(layout: [:layouts, :pdf])
+    #   expect(response).to render_template(layout: 'layouts/pdf.html')
     # end
   end
 end
