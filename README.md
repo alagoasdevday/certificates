@@ -5,22 +5,23 @@
 [![Code Climate](https://codeclimate.com/github/alagoasdevday/certificates/badges/gpa.svg)](https://codeclimate.com/github/alagoasdevday/certificates)
 [![Security](https://hakiri.io/github/alagoasdevday/certificates/master.svg)](https://hakiri.io/github/alagoasdevday/certificates/master)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e998c32fd45a4c70bd8f3068ecfd137b)](https://www.codacy.com/app/gmmcal/certificates?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=alagoasdevday/certificates&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Coverage/e998c32fd45a4c70bd8f3068ecfd137b)](https://www.codacy.com/app/gmmcal/certificates?utm_source=github.com&utm_medium=referral&utm_content=alagoasdevday/certificates&utm_campaign=Badge_Coverage)
 
 Certificates app for Alagoas Dev Day
 
 # Requirements
 
-This app was built using ruby 2.3.x and Postgresql. This app is currently built with portuguese texts. This may be updated in the future.
+This app was built using ruby 2.4.x and Postgresql. This app is currently built with portuguese texts. This may be updated in the future.
 
 # Installing
 
 After cloning this app, run the following commands:
 
-If you use RVM, make sure you have ruby 2.3.x installed. If so, when in the app folder, run (change .x for the minor version of your ruby. I.E.: 2.3.0)
+If you use RVM, make sure you have ruby 2.4.x installed. If so, when in the app folder, run (change .x for the minor version of your ruby. I.E.: 2.4.0)
 
 ```
-rvm rvmrc create ruby-2.3.x@certificatesapp --ruby-version
-rvm use ruby-2.3.x@certificatesapp
+rvm rvmrc create ruby-2.4.x@certificatesapp --ruby-version
+rvm use ruby-2.4.x@certificatesapp
 bundle install
 cp config/database-example.yml config/database.yml
 -- (Config your database parameter on database.yml (if needed))
