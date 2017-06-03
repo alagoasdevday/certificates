@@ -16,44 +16,44 @@ ActiveRecord::Schema.define(version: 20150513002848) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string   "name"
-    t.string   "pdf_layout",   default: "pdf"
-    t.string   "pdf_template", default: "pdf"
-    t.string   "location"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.integer  "workload",     default: 0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
-    t.string   "slug"
+    t.string "name"
+    t.string "pdf_layout", default: "pdf"
+    t.string "pdf_template", default: "pdf"
+    t.string "location"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "workload", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   create_table "events_participants", force: :cascade do |t|
-    t.integer "event_id"
-    t.integer "participant_id"
-    t.index ["event_id"], name: "index_events_participants_on_event_id", using: :btree
-    t.index ["participant_id"], name: "index_events_participants_on_participant_id", using: :btree
+    t.bigint "event_id"
+    t.bigint "participant_id"
+    t.index ["event_id"], name: "index_events_participants_on_event_id"
+    t.index ["participant_id"], name: "index_events_participants_on_participant_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
-    t.string   "slug",                      null: false
-    t.integer  "sluggable_id",              null: false
-    t.string   "sluggable_type", limit: 50
-    t.string   "scope"
+    t.string "slug", null: false
+    t.integer "sluggable_id", null: false
+    t.string "sluggable_type", limit: 50
+    t.string "scope"
     t.datetime "created_at"
-    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
-    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
-    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
-    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+    t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
+    t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
+    t.index ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id"
+    t.index ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type"
   end
 
   create_table "participants", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "participation_type"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "slug"
+    t.string "name"
+    t.string "email"
+    t.string "participation_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "slug"
   end
 
   add_foreign_key "events_participants", "events"
