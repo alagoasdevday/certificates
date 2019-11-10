@@ -1,14 +1,24 @@
 language: ruby
-cache: bundler
+
+dist: xenial
+
+services:
+  - postgresql
+
+addons:
+  postgresql: "10"
+
+cache:
+  directories:
+    - ~/.rvm
+    - ~/.cache
+
 rvm:
   - 2.6.5
+
 before_script:
   - cp config/database.yml.travis config/database.yml
   - cp config/secrets.yml.travis config/secrets.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 
-addons:
-  code_climate:
-    repo_token: de204ee6df952565167b2ea21b961a94aae1ab0c18fd1db60cd88674f5b84bff
-after_success:
-  - bundle exec codeclimate-test-reporter
+
