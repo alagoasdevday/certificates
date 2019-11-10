@@ -27,21 +27,20 @@ end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', '~> 9.0'
+  gem 'byebug'
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring', '~> 2.0'
+  gem 'spring'
 
-  gem 'factory_girl_rails', '~> 4.8'
-  gem 'faker', '~> 1.7'
-  gem 'pry-rails', '~> 0.3'
-  gem 'pry-rescue', '~> 1.4'
-  gem 'rspec-rails', '~> 3.6'
-  gem 'rails-controller-testing', '~> 1.0'
-  gem 'simplecov', '~> 0.13', require: false
-  gem 'database_cleaner', '~> 1.6'
-  gem 'shoulda-matchers', '~> 3.1', require: false
-  gem 'codeclimate-test-reporter', '~> 1.0'
+  gem 'factory_bot_rails'
+  gem 'faker'
+  gem 'pry-rails'
+  gem 'pry-rescue'
+  gem 'rspec-rails'
+  gem 'rails-controller-testing'
+  gem 'simplecov', require: false
+  gem 'database_cleaner'
+  gem 'shoulda-matchers', require: false
 end
 #
 gem 'bootstrap-sass', '~> 3.3'
