@@ -11,17 +11,17 @@ Certificates app for Alagoas Dev Day
 
 # Requirements
 
-This app was built using ruby 2.4.x and Postgresql. This app is currently built with portuguese texts. This may be updated in the future.
+This app was built using ruby 2.6.5 and Postgresql. This app is currently built with portuguese texts. This may be updated in the future.
 
 # Installing
 
 After cloning this app, run the following commands:
 
-If you use RVM, make sure you have ruby 2.4.x installed. If so, when in the app folder, run (change .x for the minor version of your ruby. I.E.: 2.4.0)
+If you use RVM, make sure you have ruby 2.6.5 installed. If so, when in the app folder, run
 
 ```
-rvm rvmrc create ruby-2.4.x@certificatesapp --ruby-version
-rvm use ruby-2.4.x@certificatesapp
+rvm rvmrc create ruby-2.6.5@certificatesapp --ruby-version
+rvm use ruby-2.6.5@certificatesapp
 bundle install
 cp config/database-example.yml config/database.yml
 -- (Config your database parameter on database.yml (if needed))
