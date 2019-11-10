@@ -92,7 +92,7 @@ GEM
     nio4r (2.5.2)
     nokogiri (1.10.5)
       mini_portile2 (~> 2.4.0)
-    pg (0.21.0)
+    pg (1.1.4)
     pry (0.12.2)
       coderay (~> 1.1.0)
       method_source (~> 0.9.0)
@@ -213,9 +213,9 @@ DEPENDENCIES
   dotenv-rails
   factory_girl_rails (~> 4.8)
   faker (~> 1.7)
-  friendly_id (~> 5.2)
-  listen (~> 3.1)
-  pg (~> 0.20)
+  friendly_id
+  listen
+  pg
   pry-rails (~> 0.3)
   pry-rescue (~> 1.4)
   rails (~> 5.1.1)
@@ -225,11 +225,11 @@ DEPENDENCIES
   shoulda-matchers (~> 3.1)
   simplecov (~> 0.13)
   spring (~> 2.0)
-  turbolinks (~> 5.0)
+  turbolinks
   uglifier
-  web-console (~> 3.5)
-  wicked_pdf (~> 1.1)
-  wkhtmltopdf-binary (~> 0.12)
+  web-console
+  wicked_pdf
+  wkhtmltopdf-binary
 
 RUBY VERSION
    ruby 2.6.5p114

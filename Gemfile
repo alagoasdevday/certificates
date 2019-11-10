@@ -5,14 +5,14 @@ ruby '2.6.5'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 0.20'
+gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks', '~> 5.0'
+gem 'turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -20,9 +20,9 @@ gem 'turbolinks', '~> 5.0'
 gem 'dotenv-rails'
 
 group :development do
-  gem 'listen', '~> 3.1'
+  gem 'listen'
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 3.5'
+  gem 'web-console'
 end
 
 group :development, :test do
@@ -46,7 +46,7 @@ end
 #
 gem 'bootstrap-sass', '~> 3.3'
 #
-gem 'wkhtmltopdf-binary', '~> 0.12'
-gem 'wicked_pdf', '~> 1.1'
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 
-gem 'friendly_id', '~> 5.2'
+gem 'friendly_id'
