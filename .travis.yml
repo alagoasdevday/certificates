@@ -9,6 +9,7 @@ addons:
   postgresql: "10"
 
 cache:
+  bundler: true
   directories:
     - ~/.rvm
     - ~/.cache
@@ -17,8 +18,13 @@ rvm:
   - 2.6.5
 
 before_script:
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
+
   - cp config/database.yml.travis config/database.yml
   - cp config/secrets.yml.travis config/secrets.yml
   - psql -c 'create database travis_ci_test;' -U postgres
 
-
+after_script:
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
