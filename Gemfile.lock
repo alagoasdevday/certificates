@@ -204,7 +204,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (~> 3.3)
+  bootstrap-sass
   byebug
   database_cleaner
   dotenv-rails

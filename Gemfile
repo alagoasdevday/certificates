@@ -42,9 +42,9 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', require: false
 end
-#
-gem 'bootstrap-sass', '~> 3.3'
-#
+
+gem 'bootstrap-sass'
+
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 
