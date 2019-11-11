@@ -10,25 +10,29 @@ class CertificatesController < ApplicationController
 
   def show
     @event = Event.find(params[:event_id])
-    @participant = @event.participants.find(params[:participant_id]) rescue nil
-    if @participant
+    begin
+      @participant = @event.participants.find(params[:participant_id])
       respond_to do |format|
         format.pdf do
           render pdf_hash
         end
       end
-    else
-      @participant = Participant.find(params[:participant_id]) rescue nil
-      if @participant
-        @events = @participant.events
-        render action: :search, formats: [:html], alert: "Participante não esteve no evento #{@event.name}", status: :not_found
-      else
-        render action: :index, formats: [:html], alert: "Participante não encontrado", status: :not_found
-      end
+    rescue
+      participant_not_found
     end
   end
 
   private
+
+  def participant_not_found
+    begin
+      @participant = Participant.find(params[:participant_id])
+      @events = @participant.events
+      render action: :search, formats: [:html], alert: "Participante não esteve no evento #{@event.name}", status: :not_found
+    rescue
+      render action: :index, formats: [:html], alert: "Participante não encontrado", status: :not_found
+    end
+  end
 
   def pdf_hash
     {
