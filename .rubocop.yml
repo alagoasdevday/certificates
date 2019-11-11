@@ -22,7 +22,7 @@ Style/StringLiterals:
   Exclude:
     - 'config/**/*'
 
-Documentation:
+Style/Documentation:
   Enabled: false
 
 Lint/ScriptPermission:
