@@ -55,13 +55,21 @@ RSpec.describe "Certificates", type: :request do
       expect(response).to render_template(layout: 'layouts/pdf.html')
     end
 
-    # it "renders an error if participant hasn't participated on the event" do
-    #   participant = create(:participant, events: [])
-    #   get show_certificate_path(@event, participant, format: :pdf)
+    it "renders an error if participant hasn't participated on the event" do
+      participant = create(:participant, events: [])
+      get show_certificate_path(@event, participant, format: :pdf)
 
-    #   expect(response).to have_http_status(404)
-    #   expect(response).to render_template('certificates/pdf.pdf.erb')
-    #   expect(response).to render_template(layout: 'layouts/pdf.html')
-    # end
+      expect(response).to have_http_status(404)
+      expect(response).to render_template('certificates/search')
+      expect(response).to render_template(layout: 'layouts/application')
+    end
+
+    it "renders an error if participant was not found" do
+      get show_certificate_path(@event, 'a-random-participant-friendly-name', format: :pdf)
+
+      expect(response).to have_http_status(404)
+      expect(response).to render_template('certificates/index')
+      expect(response).to render_template(layout: 'layouts/application')
+    end
   end
 end
