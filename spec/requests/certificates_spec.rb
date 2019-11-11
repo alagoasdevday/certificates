@@ -4,74 +4,140 @@ require 'rails_helper'
 
 RSpec.describe 'Certificates', type: :request do
   describe 'GET /' do
-    it 'shows home page' do
-      get root_path
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template(:index)
+    context 'when shows home page' do
+      before do
+        get root_path
+      end
+
+      it 'is successful' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders index template' do
+        expect(response).to render_template(:index)
+      end
     end
   end
 
   describe 'GET /search' do
-    it 'fails if no email is provided' do
-      get search_events_path, params: { email: nil }
-      expect(response).to have_http_status(:not_found)
-      expect(response).to render_template(:index)
+    context 'when no email is provided' do
+      before do
+        get search_events_path, params: { email: nil }
+      end
+
+      it 'responds with not found error' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'renders index template' do
+        expect(response).to render_template(:index)
+      end
     end
 
-    it 'fails if a email is provided, but is not from a participant' do
-      get search_events_path, params: { email: Faker::Internet.email }
-      expect(response).to have_http_status(:not_found)
-      expect(response).to render_template(:index)
+    context 'when a email is provided, but is not from a participant' do
+      before do
+        get search_events_path, params: { email: Faker::Internet.email }
+      end
+
+      it 'responds with not found error' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'renders index template' do
+        expect(response).to render_template(:index)
+      end
     end
 
-    it 'succeed if a valid participant email is provided' do
-      event = create(:event)
-      participant = create(:participant, events: [event])
+    context 'when a valid participant email is provided' do
+      let(:event) { create(:event) }
+      let(:participant) { create(:participant, events: [event]) }
 
-      get search_events_path, params: { email: participant.email }
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template(:search)
-      expect(response.body).to include(event.name)
+      before do
+        get search_events_path, params: { email: participant.email }
+      end
+
+      it 'is successful' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders search template' do
+        expect(response).to render_template(:search)
+      end
+
+      it 'has event name' do
+        expect(response.body).to include(event.name)
+      end
     end
   end
 
   describe 'GET /show/:event_id/:participant_id' do
-    before(:all) do
-      @event = create(:event)
-      @participant = create(:participant, events: [@event])
+    let(:event) { create(:event) }
+    let(:participant) { create(:participant, events: [event]) }
+
+    context 'with PDF certificate' do
+      before do
+        get show_certificate_path(event, participant, format: :pdf)
+      end
+
+      it 'is successful' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders pdf template' do
+        expect(response).to render_template('certificates/pdf.pdf.erb')
+      end
+
+      it do
+        expect(response).to render_template(layout: 'layouts/pdf.html')
+      end
     end
 
-    it 'renders PDF certificate' do
-      get show_certificate_path(@event, @participant, format: :pdf)
+    context 'with PDF certificate from friendly_id' do
+      before do
+        get show_certificate_path(event, participant.friendly_id, format: :pdf)
+      end
 
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template('certificates/pdf.pdf.erb')
-      expect(response).to render_template(layout: 'layouts/pdf.html')
+      it 'is successful' do
+        expect(response).to have_http_status(:ok)
+      end
+
+      it 'renders pdf template' do
+        expect(response).to render_template('certificates/pdf.pdf.erb')
+      end
+
+      it 'renders pdf layout' do
+        expect(response).to render_template(layout: 'layouts/pdf.html')
+      end
     end
 
-    it 'renders PDF certificate from friendly_id' do
-      get show_certificate_path(@event, @participant.friendly_id, format: :pdf)
+    context "when a participant hasn't participated on the event" do
+      let(:participant) { create(:participant, events: []) }
 
-      expect(response).to have_http_status(:ok)
-      expect(response).to render_template('certificates/pdf.pdf.erb')
-      expect(response).to render_template(layout: 'layouts/pdf.html')
+      before do
+        get show_certificate_path(event, participant, format: :pdf)
+      end
+
+      it 'responds with not found error' do
+        expect(response).to have_http_status(:not_found)
+      end
+
+      it 'renders search template' do
+        expect(response).to render_template(:search)
+      end
     end
 
-    it "renders an error if participant hasn't participated on the event" do
-      participant = create(:participant, events: [])
-      get show_certificate_path(@event, participant, format: :pdf)
+    context 'when participant was not found' do
+      before do
+        get show_certificate_path(event, 'a-random-participant-friendly-name', format: :pdf)
+      end
 
-      expect(response).to have_http_status(:not_found)
-      expect(response).to render_template('certificates/search')
-      expect(response).to render_template(layout: 'layouts/application')
-    end
+      it 'responds with not found error' do
+        expect(response).to have_http_status(:not_found)
+      end
 
-    it 'renders an error if participant was not found' do
-      get show_certificate_path(@event, 'a-random-participant-friendly-name', format: :pdf)
-
-      expect(response).to have_http_status(:not_found)
-      expect(response).to render_template('certificates/index')
-      expect(response).to render_template(layout: 'layouts/application')
+      it 'renders index template' do
+        expect(response).to render_template(:index)
+      end
     end
   end
 end

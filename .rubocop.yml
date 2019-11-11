@@ -54,18 +54,6 @@ Layout/SpaceInsideArrayLiteralBrackets:
   Exclude:
     - 'config/**/*'
 
-# disable these metrics for a beter refactoring
 RSpec/ExampleLength:
-  Max: 15
-
-RSpec/MultipleExpectations:
-  Max: 5
-
-RSpec/InstanceVariable:
-  Enabled: false
-
-RSpec/BeforeAfterAll:
-  Enabled: false
-
-RSpec/NamedSubject:
-  Enabled: false
+  Exclude:
+    - 'spec/views/**/*'

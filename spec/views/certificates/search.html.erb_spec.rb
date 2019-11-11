@@ -3,17 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'certificates/search.html.erb', type: :view do
-  before(:all) do
-    @participant = create(:participant)
-    @events = @participant.events
-  end
-
-  after(:all) do
-    @participant.destroy
-    @events.collect(&:destroy)
-  end
+  let(:participant) { create(:participant) }
+  let(:events) { participant.events }
 
   before do
+    assign(:participant, participant)
+    assign(:events, events)
+
     render
   end
 
@@ -22,9 +18,9 @@ RSpec.describe 'certificates/search.html.erb', type: :view do
 
     assert_select 'h1'
     assert_select 'div[class=?]', 'row' do
-      @events.each do |event|
+      events.each do |event|
         assert_select 'div[id=?][class=?]', dom_id(event), 'col-md-6 event btn btn-default' do
-          assert_select 'a[href=?][target=_blank]', show_certificate_path(event, @participant, format: :pdf)
+          assert_select 'a[href=?][target=_blank]', show_certificate_path(event, participant, format: :pdf)
         end
       end
     end
@@ -38,13 +34,18 @@ RSpec.describe 'certificates/search.html.erb', type: :view do
   end
 
   it 'must have participant information' do
-    expect(rendered).to match(/#{@participant.name}/)
+    expect(rendered).to match(/#{participant.name}/)
   end
 
-  it 'must have all events information' do
-    @events.each do |event|
+  it 'must have all events names' do
+    events.each do |event|
       expect(rendered).to match(/#{event.name}/)
-      expect(rendered).to match(/#{show_certificate_path(event, @participant, format: :pdf)}/)
+    end
+  end
+
+  it 'must have all events links' do
+    events.each do |event|
+      expect(rendered).to match(/#{show_certificate_path(event, participant, format: :pdf)}/)
     end
   end
 end

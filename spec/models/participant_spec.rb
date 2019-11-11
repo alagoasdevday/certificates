@@ -3,10 +3,10 @@
 require 'rails_helper'
 
 RSpec.describe Participant, type: :model do
-  it { expect(subject).to validate_presence_of(:name) }
-  it { expect(subject).to validate_presence_of(:email) }
-  it { expect(subject).to validate_presence_of(:participation_type) }
-  it { expect(subject).to have_and_belong_to_many(:events).autosave(true) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:email) }
+  it { is_expected.to validate_presence_of(:participation_type) }
+  it { is_expected.to have_and_belong_to_many(:events).autosave(true) }
 
   it 'has a valid factory' do
     expect(build(:participant)).to be_valid

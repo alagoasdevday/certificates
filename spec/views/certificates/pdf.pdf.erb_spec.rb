@@ -3,17 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe 'certificates/pdf.pdf.erb', type: :view do
-  before(:all) do
-    @event = create(:event)
-    @participant = create(:participant, events: [@event])
-  end
-
-  after(:all) do
-    @event.destroy
-    @participant.destroy
-  end
+  let(:event) { create(:event) }
+  let(:participant) { create(:participant, events: [event]) }
 
   before do
+    assign(:participant, participant)
+    assign(:event, event)
+
     render
   end
 
@@ -22,16 +18,31 @@ RSpec.describe 'certificates/pdf.pdf.erb', type: :view do
     assert_select 'h3'
   end
 
-  it 'must have participant information' do
-    expect(rendered).to match(/#{@participant.name}/)
-    expect(rendered).to match(/#{@participant.participation_type}/)
+  it 'must have participant name' do
+    expect(rendered).to match(/#{participant.name}/)
   end
 
-  it 'must have event information' do
-    expect(rendered).to match(/#{@event.name}/)
-    expect(rendered).to match(/#{@event.location}/)
-    expect(rendered).to match(/#{@event.workload}/)
-    expect(rendered).to match(/#{@event.start_date.strftime('%d/%m/%Y')}/)
-    expect(rendered).to match(/#{@event.end_date.strftime('%d/%m/%Y')}/)
+  it 'must have participant type' do
+    expect(rendered).to match(/#{participant.participation_type}/)
+  end
+
+  it 'must have event name' do
+    expect(rendered).to match(/#{event.name}/)
+  end
+
+  it 'must have event location' do
+    expect(rendered).to match(/#{event.location}/)
+  end
+
+  it 'must have event workload' do
+    expect(rendered).to match(/#{event.workload}/)
+  end
+
+  it 'must have event start date' do
+    expect(rendered).to match(/#{event.start_date.strftime('%d/%m/%Y')}/)
+  end
+
+  it 'must have event end date' do
+    expect(rendered).to match(/#{event.end_date.strftime('%d/%m/%Y')}/)
   end
 end
