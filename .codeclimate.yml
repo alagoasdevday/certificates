@@ -40,9 +40,9 @@ checks:
 
 plugins:
   brakeman:
-    enabled: false
+    enabled: true
   bundler-audit:
-    enabled: false
+    enabled: true
   csslint:
     enabled: false
   duplication:
@@ -55,8 +55,10 @@ plugins:
           mass_threshold: 45
   fixme:
     enabled: true
+  reek:
+    enabled: true
   rubocop:
-    enabled: false
+    enabled: true
 
 exclude_patterns:
   - "config/"

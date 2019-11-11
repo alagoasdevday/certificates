@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 ruby '2.6.5'
@@ -26,26 +28,27 @@ group :development do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
 
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  # Spring speeds up development by keeping your application running in
+  # the background. Read more: https://github.com/rails/spring
   gem 'spring'
 
+  gem 'brakeman'
+  gem 'database_cleaner'
   gem 'factory_bot_rails'
   gem 'faker'
   gem 'pry-rails'
   gem 'pry-rescue'
-  gem 'rspec-rails'
   gem 'rails-controller-testing'
-  gem 'simplecov', require: false
-  gem 'database_cleaner'
+  gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
+  gem 'simplecov', require: false
 end
 
 gem 'bootstrap-sass'
 
-gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'wkhtmltopdf-binary'
 
 gem 'friendly_id'

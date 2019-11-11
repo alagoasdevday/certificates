@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   root to: 'certificates#index'
   get 'search', to: 'certificates#search', as: :search_events

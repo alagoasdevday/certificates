@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class CreateParticipants < ActiveRecord::Migration[5.1]
   def change
-    create_table :participants do |t|
-      t.string :name
-      t.string :email
-      t.string :participation_type
+    create_table :participants do |table|
+      table.string :name
+      table.string :email
+      table.string :participation_type
 
-      t.timestamps null: false
+      table.timestamps null: false
     end
   end
 end

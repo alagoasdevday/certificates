@@ -1,37 +1,47 @@
+# frozen_string_literal: true
+
 class CertificatesController < ApplicationController
-  def index
-  end
+  def index; end
 
   def search
-    @participant = Participant.find_by(email: params[:email])
-    render action: :index, alert: "Nenhum participante encontrado com o e-mail \"#{params[:email]}\"", status: :not_found if @participant.nil?
-    @events = @participant.events unless @participant.nil?
+    @participant = Participant.find_by(email: email)
+    if @participant
+      @events = @participant.events
+    else
+      render action: :index,
+             alert: "Nenhum participante encontrado com o e-mail \"#{email}\"",
+             status: :not_found
+    end
   end
 
   def show
     @event = Event.find(params[:event_id])
     begin
       @participant = @event.participants.find(params[:participant_id])
-      respond_to do |format|
-        format.pdf do
-          render pdf_hash
-        end
-      end
-    rescue
+      render pdf_hash
+    rescue StandardError
       participant_not_found
     end
   end
 
   private
 
+  def email
+    params[:email]
+  end
+
   def participant_not_found
-    begin
-      @participant = Participant.find(params[:participant_id])
-      @events = @participant.events
-      render action: :search, formats: [:html], alert: "Participante não esteve no evento #{@event.name}", status: :not_found
-    rescue
-      render action: :index, formats: [:html], alert: "Participante não encontrado", status: :not_found
-    end
+    @participant = Participant.find(params[:participant_id])
+    @events = @participant.events
+    render action: :search,
+           formats: [:html],
+           alert: "Participante não esteve no evento #{@event.name}",
+           status: :not_found
+  rescue StandardError
+    render action: :index,
+           formats: [:html],
+           alert: 'Participante não encontrado',
+           status: :not_found
   end
 
   def pdf_hash

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Participant, type: :model do
@@ -10,10 +12,10 @@ RSpec.describe Participant, type: :model do
     expect(build(:participant)).to be_valid
   end
 
-  context 'is invalid' do
+  context 'when is invalid' do
     let(:participant) { build(:participant) }
 
-    before(:each) do
+    before do
       participant.name = nil
       participant.email = nil
       participant.participation_type = nil
@@ -33,7 +35,7 @@ RSpec.describe Participant, type: :model do
     end
   end
 
-  context 'is valid' do
+  context 'when is valid' do
     it 'without events' do
       participant = build(:participant, events: [])
       participant.valid?

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Event, type: :model do
@@ -12,10 +14,10 @@ RSpec.describe Event, type: :model do
     expect(build(:event)).to be_valid
   end
 
-  context 'is invalid' do
+  context 'when is invalid' do
     let(:event) { build(:event) }
 
-    before(:each) do
+    before do
       event.name = nil
       event.location = nil
       event.start_date = nil
@@ -45,6 +47,7 @@ RSpec.describe Event, type: :model do
     end
   end
 
-  context 'is valid' do
+  context 'when is valid' do
+    xit
   end
 end

@@ -1,0 +1,71 @@
+require: rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 2.6
+  DisplayCopNames: true
+  Exclude:
+    - 'bin/**/*'
+    - 'db/schema.rb'
+    - 'vendor/**/*'
+    - 'lib/tasks/**/*'
+
+Rails:
+  Enabled: true
+
+Style/PercentLiteralDelimiters:
+  PreferredDelimiters:
+    default: ()
+    '%i': '[]'
+    '%w': '[]'
+
+Style/StringLiterals:
+  Exclude:
+    - 'config/**/*'
+
+Documentation:
+  Enabled: false
+
+Lint/ScriptPermission:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'lib/tasks/*'
+    - 'spec/**/*'
+
+Metrics/LineLength:
+  Exclude:
+    - 'config/**/*'
+    - 'db/migrate/*'
+    - 'spec/**/*'
+
+Metrics/MethodLength:
+  Max: 12
+  Exclude:
+    - 'db/migrate/*'
+
+RSpec/NestedGroups:
+  Max: 5
+
+Style/MixinUsage:
+  Enabled: false
+
+Layout/SpaceInsideArrayLiteralBrackets:
+  Exclude:
+    - 'config/**/*'
+
+# disable these metrics for a beter refactoring
+RSpec/ExampleLength:
+  Max: 15
+
+RSpec/MultipleExpectations:
+  Max: 5
+
+RSpec/InstanceVariable:
+  Enabled: false
+
+RSpec/BeforeAfterAll:
+  Enabled: false
+
+RSpec/NamedSubject:
+  Enabled: false
