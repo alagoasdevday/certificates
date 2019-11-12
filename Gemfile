@@ -5,11 +5,11 @@ source 'https://rubygems.org'
 ruby '2.6.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.1.1'
+gem 'rails', '~> 5.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0.6'
+gem 'sass-rails', '~> 5.1'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 
@@ -18,6 +18,9 @@ gem 'turbolinks'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+# Reduces boot times through caching; required in config/boot.rb
+gem 'bootsnap', require: false
 
 gem 'dotenv-rails'
 
@@ -29,11 +32,8 @@ end
 
 group :development, :test do
   gem 'byebug'
-
   # Spring speeds up development by keeping your application running in
   # the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-
   gem 'brakeman'
   gem 'database_cleaner'
   gem 'factory_bot_rails'
@@ -46,6 +46,7 @@ group :development, :test do
   gem 'rubocop-rspec'
   gem 'shoulda-matchers', require: false
   gem 'simplecov', require: false
+  gem 'spring'
 end
 
 gem 'bootstrap-sass'
